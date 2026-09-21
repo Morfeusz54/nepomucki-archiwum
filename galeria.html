@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria rodzinna | Mieczysław Nepomucki</title>
+    <style>
+        :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #555555; --border-color: #e0e0e0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { font-size: 2.2rem; font-weight: 300; margin: 0 0 10px 0; }
+        nav a { color: var(--accent-color); text-decoration: none; margin-right: 20px; font-size: 0.95rem; }
+        nav a:hover { text-decoration: underline; }
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .archive-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
+        .archive-item:hover { transform: translateY(-3px); }
+        .doc-placeholder { width: 100%; height: 240px; background-color: #f0f0f0; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; text-align: center; padding: 10px; box-sizing: border-box; }
+        .item-meta { margin-top: 10px; font-size: 0.85rem; }
+        .item-title { font-weight: 600; margin: 0; }
+        .item-desc { color: var(--accent-color); margin: 3px 0 0 0; font-size: 0.8rem; }
+        .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
+        .lightbox-content { width: 85%; max-width: 550px; height: 450px; background: #222; display: flex; align-items: center; justify-content: center; border: 1px solid #444; color: #aaa; font-size: 0.9rem; }
+        .lightbox-caption { margin-top: 15px; font-size: 0.95rem; text-align: center; max-width: 550px; line-height: 1.4; padding: 0 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2.5rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Archiwum Dokumentów</h1>
+            <p style="color: var(--accent-color); margin: 0;">Metryki, świadectwa i zapiski urzędowe potwierdzające bieg historii rodzinnej.</p>
+            <nav>
+                <a href="index.html">Biografia</a>
+                <a href="metaloplastyka.html">Metaloplastyka</a>
+                <a href="obrazy.html">Obrazy i Grafika</a>
+                <a href="archiwum.html" >Archiwum Dokumentów</a>
+		<a href="galeria.html" >Galeria rodzinna</a>
+            </nav>
+        </header>
+        <main>
+            <p>Prezentowane poniżej materiały archiwalne stanowią bezpośrednią podstawę faktograficzną odtwarzanych losów Mieczysława Nepomuckiego oraz jego najbliższych.</p>
+            <div class="archive-grid">
+                <div >
+                    <div class="doc-placeholder"><img src="nepomucki mieczyslaw Warszawa_f.webp" alt="Mieczyslaw Nepomucki" width="200"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki (lata 30)</p><p class="item-desc">Mieczysław Nepomucki (lata 30) Warszawa</p></div>
+                </div>
+                <div class="archive-item" onclick="openLightbox('Autobiogram Szkolny', 'Własnoręczne zapiski Mieczysława dokumentujące przebieg wczesnej edukacji w Mohylewie Podolskim, Odessie oraz Wilnie do momentu przybycia do Brześcia.')">
+                    <div class="doc-placeholder">Rękopis Biograficzny</div>
+                    <div class="item-meta"><p class="item-title">Zapiski Własnoręczne</p><p class="item-desc">Dokumentacja Edukacji</p></div>
+                </div>
+                <div class="archive-item" onclick="openLightbox('Dokumentacja Akt Personalnych', 'Wyciągi z dokumentów meldunkowych i studenckich potwierdzające adresy warszawskie (Wspólna, Okólnik, Wilcza) oraz przebieg studiów na Wydziale Architektury.')">
+                    <div class="doc-placeholder">Karty Meldunkowe i Studenckie</div>
+                    <div class="item-meta"><p class="item-title">Akta Personalne PW</p><p class="item-desc">Warszawa, 1926–1939</p></div>
+                </div>
+                <div class="archive-item" onclick="openLightbox('Historia Ordynatury dr. Floriana Nepomuckiego', 'Materiały urzędowe i wspomnienia związane z pracą zawodową ojca artysty – od kliniki przy ul. Zygmuntowskiej 38 w Brześciu po ordynaturę oddziału położniczego w Ostródzie.')">
+                    <div class="doc-placeholder">Dokumentacja Medyczna i Urzędowa</div>
+                    <div class="item-meta"><p class="item-title">Działalność dr. Floriana</p><p class="item-desc">Brześć / Ostróda</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">Podgląd skanu dokumentu archiwalnego</div>
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+    <script>
+        function openLightbox(title, desc) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br><span style="color:#ccc; font-size:0.85rem;">' + desc + '</span>'; }
+        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+    </script>
+</body>
+</html>
