@@ -15,12 +15,14 @@
         .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
         .archive-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
         .archive-item:hover { transform: translateY(-3px); }
-        .doc-placeholder { width: 100%; height: 240px; background-color: #f0f0f0; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; text-align: center; padding: 10px; box-sizing: border-box; }
+        .doc-placeholder { width: 100%; height: 240px; background-color: #f0f0f0; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; text-align: center; padding: 10px; box-sizing: border-box; overflow: hidden; }
+        .doc-placeholder img { width: 100%; height: 100%; object-fit: cover; }
         .item-meta { margin-top: 10px; font-size: 0.85rem; }
         .item-title { font-weight: 600; margin: 0; }
         .item-desc { color: var(--accent-color); margin: 3px 0 0 0; font-size: 0.8rem; }
         .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
         .lightbox-content { width: 85%; max-width: 550px; height: 450px; background: #222; display: flex; align-items: center; justify-content: center; border: 1px solid #444; color: #aaa; font-size: 0.9rem; }
+        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .lightbox-caption { margin-top: 15px; font-size: 0.95rem; text-align: center; max-width: 550px; line-height: 1.4; padding: 0 10px; }
         .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2.5rem; cursor: pointer; }
     </style>
@@ -34,40 +36,85 @@
                 <a href="index.html">Biografia</a>
                 <a href="metaloplastyka.html">Metaloplastyka</a>
                 <a href="obrazy.html">Obrazy i Grafika</a>
-                <a href="archiwum.html" >Archiwum Dokumentów</a>
-		<a href="galeria.html" >Galeria rodzinna</a>
+                <a href="archiwum.html">Archiwum Dokumentów</a>
+                <a href="galeria.html">Galeria rodzinna</a>
             </nav>
         </header>
         <main>
             <p>Prezentowane poniżej materiały archiwalne stanowią bezpośrednią podstawę faktograficzną odtwarzanych losów Mieczysława Nepomuckiego oraz jego najbliższych.</p>
             <div class="archive-grid">
-                <div >
-                    <div class="doc-placeholder"><img src="nepomucki mieczyslaw Warszawa_f.webp" alt="Mieczyslaw Nepomucki" width="200"></div>
-                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki (lata 30)</p><p class="item-desc">Mieczysław Nepomucki (lata 30) Warszawa</p></div>
+                <!-- Naprawiony pierwszy element z obsługą zdjęcia w lightboxie -->
+                <div class="archive-item" onclick="openLightbox('Mieczysław Nepomucki (lata 30)', 'Portret fotograficzny wykonany w Warszawie.', 'nepomucki mieczyslaw Warszawa_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki mieczyslaw Warszawa_s.webp" alt="Mieczyslaw Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki (lata 30)</p><p class="item-desc">Fotografia z dowodu</div>
                 </div>
-                <div class="archive-item" onclick="openLightbox('Autobiogram Szkolny', 'Własnoręczne zapiski Mieczysława dokumentujące przebieg wczesnej edukacji w Mohylewie Podolskim, Odessie oraz Wilnie do momentu przybycia do Brześcia.')">
-                    <div class="doc-placeholder">Rękopis Biograficzny</div>
-                    <div class="item-meta"><p class="item-title">Zapiski Własnoręczne</p><p class="item-desc">Dokumentacja Edukacji</p></div>
+                <div class="archive-item" onclick="openLightbox('Dom rodzinny lata 30', ' Brześć nad Bugiem', 'nepomucki mieczyslaw Brzesc nad Bugiem_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki mieczyslaw Brzesc nad Bugiem_s.webp" alt="Mieczyslaw Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Brześć nad Bugiem</p></div>
                 </div>
-                <div class="archive-item" onclick="openLightbox('Dokumentacja Akt Personalnych', 'Wyciągi z dokumentów meldunkowych i studenckich potwierdzające adresy warszawskie (Wspólna, Okólnik, Wilcza) oraz przebieg studiów na Wydziale Architektury.')">
-                    <div class="doc-placeholder">Karty Meldunkowe i Studenckie</div>
-                    <div class="item-meta"><p class="item-title">Akta Personalne PW</p><p class="item-desc">Warszawa, 1926–1939</p></div>
+                <div class="archive-item" onclick="openLightbox('Florian Nepomucki', 'Klinika położnicza 1937', 'nepomucki floria 1937 Brzesc nad Bugiem_s.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki floria 1937 Brzesc nad Bugiem_s.webp" alt="Florian Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Florian Nepomucki 1937</p><p class="item-desc">Brześć nad Bugiem</p></div>
                 </div>
-                <div class="archive-item" onclick="openLightbox('Historia Ordynatury dr. Floriana Nepomuckiego', 'Materiały urzędowe i wspomnienia związane z pracą zawodową ojca artysty – od kliniki przy ul. Zygmuntowskiej 38 w Brześciu po ordynaturę oddziału położniczego w Ostródzie.')">
-                    <div class="doc-placeholder">Dokumentacja Medyczna i Urzędowa</div>
-                    <div class="item-meta"><p class="item-title">Działalność dr. Floriana</p><p class="item-desc">Brześć / Ostróda</p></div>
+		 <div class="archive-item" onclick="openLightbox('Florian Nepomucki', 'Klinika położnicza 1937', 'nepomucki floria 1937 Brzesc nad Bugiem 1_s.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki floria 1937 Brzesc nad Bugiem 1_s.webp" alt="Florian Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Florian Nepomucki 1937</p><p class="item-desc">Brześć nad Bugiem</p></div>
                 </div>
+ 		<div class="archive-item" onclick="openLightbox('Florian Nepomucki', 'Krynica 1953', 'nepomucki florian 1953 Krynica_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki florian 1953 Krynica_s.webp" alt="Florian Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Florian Nepomucki 1953</p><p class="item-desc">Krynica</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Maria Nepomucka z domu Dzikowska', 'Brześć nad Bugiem .', 'nepomucka maria_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucka maria_s.webp" alt="Maria Nepomucka"></div>
+                    <div class="item-meta"><p class="item-title">Maria Nepomucka </p><p class="item-desc">Brześć na Bugiem</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Krystyna Nepomucka', 'Warszawa', 'nepomucka krystyna_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucka krystyna_s.webp" alt="Krystyna Nepomucki"></div>
+                    <div class="item-meta"><p class="item-title">Krystyna Nepomucka lata 30</p><p class="item-desc">Warszawa</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Mieszkanie Nepomuckich', 'Brześć na Bugiem', 'nepomucki mieszkanie_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki mieszkanie_s.webp" alt="Mieszkania Brześć"></div>
+                    <div class="item-meta"><p class="item-title">Mieszkanie Nepomuckich lata 30</p><p class="item-desc">Mieszkania Brześć nad Bugiem</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Mieczysław Nepomuckich na studiach', 'Warszawa', 'nepomucki mieczyslaw studia_f.webp')">
+                    <div class="doc-placeholder"><img src="nepomucki mieczyslaw studia_s.webp" alt="studia"></div>
+                    <div class="item-meta"><p class="item-title">Architektura</p><p class="item-desc">Warszawa</p></div>
+                </div>
+
+
+                                </div>
             </div>
         </main>
     </div>
-     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content">Podgląd skanu dokumentu archiwalnego</div>
-        <div id="lightbox-caption" class="lightbox-caption"></div>
+        <!-- Kontener wewnętrzny przechwyci kliknięcie, aby nie zamykać okna przypadkowo -->
+        <div class="lightbox-content" id="lightbox-content" onclick="event.stopPropagation()">Podgląd skanu dokumentu archiwalnego</div>
+        <div id="lightbox-caption" class="lightbox-caption" onclick="event.stopPropagation()"></div>
     </div>
+
     <script>
-        function openLightbox(title, desc) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br><span style="color:#ccc; font-size:0.85rem;">' + desc + '</span>'; }
-        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        function openLightbox(title, desc, mediaSrc) { 
+            const contentBox = document.getElementById('lightbox-content');
+            
+            // Jeśli przekazano adres pliku graficznego, wstawiamy tag <img>
+            if (mediaSrc) {
+                contentBox.innerHTML = '<img src="' + mediaSrc + '" alt="' + title + '">';
+                contentBox.style.background = 'transparent'; // opcjonalne usunięcie szarego tła dla obrazka
+            } else {
+                // Domyślny tekst zastępczy, jeśli brak fizycznego pliku skanu
+                contentBox.innerHTML = 'Podgląd skanu dokumentu archiwalnego';
+                contentBox.style.background = '#222';
+            }
+
+            document.getElementById('lightbox').style.display = 'flex'; 
+            document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br><span style="color:#ccc; font-size:0.85rem;">' + desc + '</span>'; 
+        }
+        
+        function closeLightbox() { 
+            document.getElementById('lightbox').style.display = 'none'; 
+        }
     </script>
 </body>
 </html>
