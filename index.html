@@ -105,36 +105,40 @@
             </table>
 
             <div class="form-section">
-                <div id="form-container">
-                    <h3 style="margin-top:0; font-weight:400;">Kontakt i Wspomnienia</h3>
-                    <p style="font-size:0.9rem; color:#444;">Posiadasz w prywatnej kolekcji dzieła Mieczysława Nepomuckiego? A może pamiętasz ordynatora Floriana? Skontaktuj się z rodziną opiekującą się archiwum.</p>
-                    <form action="https://formspree.io/f/mbglogbs" method="POST">
-                        <div class="form-group">
-                            <label for="name">Imię i nazwisko</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Adres e-mail</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Treść wiadomości</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" required>
-                                Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="privacy.html" target="_blank">Polityką Prywatności</a> w celu obsługi korespondencji.
-                            </label>
-                        </div>
-                        <button type="submit" id="submit-btn">Wyślij wiadomość</button>
-                    </form>
-                </div>
-                <div id="success-message" class="success-box">
-                    <h4 style="margin:0 0 10px 0;">Wiadomość została wysłana pomyślnie</h4>
-                    <p style="margin:0; font-size:0.95rem;">Dziękujemy za kontakt. Opiekunowie archiwum rodzinnego odpowiedzą na Twoje zgłoszenie tak szybko, jak to możliwe.</p>
-                </div>
+    <div id="form-container">
+        <h3 style="margin-top:0; font-weight:400;">Kontakt i Wspomnienia</h3>
+        <p style="font-size:0.9rem; color:#444;">Posiadasz w prywatnej kolekcji dzieła Mieczysława Nepomuckiego? A może pamiętasz ordynatora Floriana? Skontaktuj się z rodziną opiekującą się archiwum.</p>
+        <form action="https://formspree.io/f/mbglogbs" method="POST">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko</label>
+                <!-- DODANO: name="name" -->
+                <input type="text" id="name" name="name" required>
             </div>
+            <div class="form-group">
+                <label for="email">Adres e-mail</label>
+                <!-- DODANO: name="email" -->
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Treść wiadomości</label>
+                <!-- DODANO: name="message" -->
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <!-- DODANO: name="zgoda" -->
+                    <input type="checkbox" name="zgoda" required>
+                    Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z <a href="privacy.html" target="_blank">Polityką Prywatności</a> w celu obsługi korespondencji.
+                </label>
+            </div>
+            <button type="submit" id="submit-btn">Wyślij wiadomość</button>
+        </form>
+    </div>
+    <div id="success-message" class="success-box" style="display:none;">
+        <h4 style="margin:0 0 10px 0;">Wiadomość została wysłana pomyślnie</h4>
+        <p style="margin:0; font-size:0.95rem;">Dziękujemy za kontakt. Opiekunowie archiwum rodzinnego odpowiedzą na Twoje zgłoszenie tak szybko, jak to możliwe.</p>
+    </div>
+</div>
         </main>
 
         <footer>
