@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -7,23 +6,25 @@
     <title>Metaloplastyka | Mieczysław Nepomucki</title>
     <style>
         :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #555555; --border-color: #e0e0e0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         header { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 40px; }
         h1 { font-size: 2.2rem; font-weight: 300; margin: 0 0 10px 0; }
         nav a { color: var(--accent-color); text-decoration: none; margin-right: 20px; font-size: 0.95rem; }
         nav a:hover { text-decoration: underline; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
-        .gallery-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
-        .gallery-item:hover { transform: translateY(-3px); }
-        .photo-placeholder { width: 100%; height: 200px; background-color: #eaeaea; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; }
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .archive-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
+        .archive-item:hover { transform: translateY(-3px); }
+        .doc-placeholder { width: 100%; height: 240px; background-color: #f0f0f0; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; text-align: center; padding: 10px; box-sizing: border-box; overflow: hidden; }
+        .doc-placeholder img { width: 100%; height: 100%; object-fit: cover; }
         .item-meta { margin-top: 10px; font-size: 0.85rem; }
         .item-title { font-weight: 600; margin: 0; }
-        .item-desc { color: var(--accent-color); margin: 3px 0 0 0; }
-        .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
-        .lightbox-content { width: 80%; max-width: 500px; height: 350px; background: #333; display: flex; align-items: center; justify-content: center; border: 1px solid #555; }
-        .lightbox-caption { margin-top: 15px; font-size: 1rem; text-align: center; }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; }
+        .item-desc { color: var(--accent-color); margin: 3px 0 0 0; font-size: 0.8rem; }
+        .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
+        .lightbox-content { width: 85%; max-width: 550px; height: 450px; background: #222; display: flex; align-items: center; justify-content: center; border: 1px solid #444; color: #aaa; font-size: 0.9rem; }
+        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .lightbox-caption { margin-top: 15px; font-size: 0.95rem; text-align: center; max-width: 550px; line-height: 1.4; padding: 0 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2.5rem; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -33,33 +34,109 @@
             <p style="color: var(--accent-color); margin: 0;">Prace w metalu kute i formowane przez samouka.</p>
             <nav>
                 <a href="index.html">Biografia</a>
-                <a href="metaloplastyka.html" style="font-weight: bold;">Metaloplastyka</a>
+                <a href="metaloplastyka.html">Metaloplastyka</a>
                 <a href="obrazy.html">Obrazy i Grafika</a>
                 <a href="archiwum.html">Archiwum Dokumentów</a>
+                <a href="galeria.html">Galeria rodzinna</a>
             </nav>
         </header>
         <main>
             <p>Nie posiadając akademickiego wykształcenia artystycznego, Mieczysław Nepomucki opanował trudną i wymagającą fizycznie technikę obróbki metalu. Korzystając w tajemnicy z podręczników do chemii oraz metalurgii, tworzył unikalne reliefy, kute formy oraz kompozycje dekoracyjne.</p>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('Kompozycja Abstrakcyjna', 'Metal kuty, relief ścienny. Okres ostródzki.')">
-                    <div class="photo-placeholder">Zdjęcie pracy #1</div>
-                    <div class="item-meta"><p class="item-title">Kompozycja Abstrakcyjna</p><p class="item-desc">Metal kuty, relief</p></div>
+            <div class="archive-grid">
+                <!-- Naprawiony pierwszy element z obsługą zdjęcia w lightboxie -->
+                <div class="archive-item" onclick="openLightbox('Jezus na drewnie', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P3140014_f.webp')">
+                    <div class="doc-placeholder"><img src="P3140014_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Montaż na desce</div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox('Forma Przestrzenna', 'Miedź, patyna. Adres pracowni: Kościuszki 3.')">
-                    <div class="photo-placeholder">Zdjęcie pracy #2</div>
-                    <div class="item-meta"><p class="item-title">Forma Przestrzenna</p><p class="item-desc">Miedź profilowana</p></div>
+                <div class="archive-item" onclick="openLightbox('Jezus na drewnie', ' Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P3150026_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150026_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Montaż na desce</p></div>
                 </div>
+                <div class="archive-item" onclick="openLightbox('Jezus na drewnie', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P8210261_s.webp')">
+                    <div class="doc-placeholder"><img src="P8210261_s.webp" alt="mataloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Montaż na desce</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Jezus na drewnie', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P8210264_f.webp')">
+                    <div class="doc-placeholder"><img src="P8210264_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Montaż na desce</p></div>
+                </div>
+
+		 	<div class="archive-item" onclick="openLightbox('Jezus', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130002_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130002_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Chrystus</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Jezus', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130004_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130004_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Chrystus</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Jezus', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P4130003_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130003_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Chrystus</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Portret Lenina', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130005_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130005_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Lenin</p></div>
+                </div>
+
+<div class="archive-item" onclick="openLightbox('Rycerz 1', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130007_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130007_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Rycerz</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Rycerz 2', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130008_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130008_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Rycerz</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Hugo Kołątaj', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130009_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130009_f_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Postać</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Okręt', 'Metaloplastyka wykonana technika Repusewo bez patyny.', 'P4130016_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130016_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Statek</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Pojedynek 1', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P8210265_f.webp')">
+                    <div class="doc-placeholder"><img src="P8210265_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Pojedynek</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Pojedynek 2', 'Metaloplastyka wykonana technika Repusewo z patynowaniem.', 'P8210268_f.webp')">
+                    <div class="doc-placeholder"><img src="P8210268_s.webp" alt="metaloplastyka"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Pojedynek</p></div>
+                </div>
+
+
+                                </div>
             </div>
         </main>
     </div>
+    
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content">Podgląd dzieła sztuki</div>
-        <div id="lightbox-caption" class="lightbox-caption"></div>
+        <!-- Kontener wewnętrzny przechwyci kliknięcie, aby nie zamykać okna przypadkowo -->
+        <div class="lightbox-content" id="lightbox-content" onclick="event.stopPropagation()">Podgląd skanu dokumentu archiwalnego</div>
+        <div id="lightbox-caption" class="lightbox-caption" onclick="event.stopPropagation()"></div>
     </div>
+
     <script>
-        function openLightbox(title, desc) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br>' + desc; }
-        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        function openLightbox(title, desc, mediaSrc) { 
+            const contentBox = document.getElementById('lightbox-content');
+            
+            // Jeśli przekazano adres pliku graficznego, wstawiamy tag <img>
+            if (mediaSrc) {
+                contentBox.innerHTML = '<img src="' + mediaSrc + '" alt="' + title + '">';
+                contentBox.style.background = 'transparent'; // opcjonalne usunięcie szarego tła dla obrazka
+            } else {
+                // Domyślny tekst zastępczy, jeśli brak fizycznego pliku skanu
+                contentBox.innerHTML = 'Podgląd skanu dokumentu archiwalnego';
+                contentBox.style.background = '#222';
+            }
+
+            document.getElementById('lightbox').style.display = 'flex'; 
+            document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br><span style="color:#ccc; font-size:0.85rem;">' + desc + '</span>'; 
+        }
+        
+        function closeLightbox() { 
+            document.getElementById('lightbox').style.display = 'none'; 
+        }
     </script>
 </body>
 </html>
