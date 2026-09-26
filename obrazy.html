@@ -3,69 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obrazy i Grafika | Mieczysław Nepomucki</title>
+    <title>Galeria rodzinna | Mieczysław Nepomucki</title>
     <style>
         :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #555555; --border-color: #e0e0e0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         header { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 40px; }
         h1 { font-size: 2.2rem; font-weight: 300; margin: 0 0 10px 0; }
         nav a { color: var(--accent-color); text-decoration: none; margin-right: 20px; font-size: 0.95rem; }
         nav a:hover { text-decoration: underline; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
-        .gallery-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
-        .gallery-item:hover { transform: translateY(-3px); }
-        .photo-placeholder { width: 100%; height: 200px; background-color: #eaeaea; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; }
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .archive-item { border: 1px solid var(--border-color); background: #fff; padding: 10px; cursor: pointer; transition: transform 0.2s; }
+        .archive-item:hover { transform: translateY(-3px); }
+        .doc-placeholder { width: 100%; height: 240px; background-color: #f0f0f0; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem; text-align: center; padding: 10px; box-sizing: border-box; overflow: hidden; }
+        .doc-placeholder img { width: 100%; height: 100%; object-fit: cover; }
         .item-meta { margin-top: 10px; font-size: 0.85rem; }
         .item-title { font-weight: 600; margin: 0; }
-        .item-desc { color: var(--accent-color); margin: 3px 0 0 0; }
-        .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
-        .lightbox-content { width: 80%; max-width: 500px; height: 350px; background: #333; display: flex; align-items: center; justify-content: center; border: 1px solid #555; }
-        .lightbox-caption { margin-top: 15px; font-size: 1rem; text-align: center; }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; }
+        .item-desc { color: var(--accent-color); margin: 3px 0 0 0; font-size: 0.8rem; }
+        .lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; color:#fff; flex-direction: column; }
+        .lightbox-content { width: 85%; max-width: 550px; height: 450px; background: #222; display: flex; align-items: center; justify-content: center; border: 1px solid #444; color: #aaa; font-size: 0.9rem; }
+        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .lightbox-caption { margin-top: 15px; font-size: 0.95rem; text-align: center; max-width: 550px; line-height: 1.4; padding: 0 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2.5rem; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Obrazy i Grafika</h1>
+            <h1>Obrazy olejne i Grafika</h1>
             <p style="color: var(--accent-color); margin: 0;">Malarstwo olejne i szkice projektowe artysty samouka.</p>
             <nav>
                 <a href="index.html">Biografia</a>
                 <a href="metaloplastyka.html">Metaloplastyka</a>
-                <a href="obrazy.html" style="font-weight: bold;">Obrazy i Grafika</a>
+                <a href="obrazy.html">Obrazy i Grafika</a>
                 <a href="archiwum.html">Archiwum Dokumentów</a>
-		<a href="galeria.html" >Galeria rodzinna</a>
+                <a href="galeria.html">Galeria rodzinna</a>
             </nav>
         </header>
         <main>
             <p>Edukacja w typie humanistycznym oraz lata spędzone na Wydziale Architektury Politechniki Warszawskiej ugruntowały w Mieczysławie doskonałe poczucie przestrzeni, formy i linii. Prezentowane grafiki i oleje stanowią intymny zapis buntu przeciw narzuconemu rygorowi dnia codziennego.</p>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('Pejzaż Wspomnieniowy', 'Obraz olejny na płótnie. Praca inspirowana motywami wschodnimi.')">
-                    <div class="photo-placeholder">Malarstwo Olejne #1</div>
-                    <div class="item-meta">
-                        <p class="item-title">Pejzaż Kresowy</p>
-                        <p class="item-desc">Olej na płótnie</p>
-                    </div>
+            <div class="archive-grid">
+                <!-- Naprawiony pierwszy element z obsługą zdjęcia w lightboxie -->
+                <div class="archive-item" onclick="openLightbox('Koń na łące', 'obraz malowany na płótnie farbą olejną.', 'P3140013_f.webp')">
+                    <div class="doc-placeholder"><img src="P3140013_s.webp" alt="kon"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox('Szkic Architektoniczny', 'Tusz na papierze. Widoczne wpływy z okresu studiów na Politechnice.')">
-                    <div class="photo-placeholder">Grafika / Tusz #1</div>
-                    <div class="item-meta">
-                        <p class="item-title">Studium Przestrzeni</p>
-                        <p class="item-desc">Grafika tuszem</p>
-                    </div>
+                <div class="archive-item" onclick="openLightbox('Kon na łące', 'obraz malowany na płótnie farbą olejną', 'P3150014_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150014_s.webp" alt="kon"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
                 </div>
+                <div class="archive-item" onclick="openLightbox('Koń na łące', 'obraz malowany na płótnie farbą olejną', 'P821025_F.webp')">
+                    <div class="doc-placeholder"><img src="P8210256_s.webp" alt="kon"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Koń na łące', 'obraz malowany na płótnie farbą olejną', 'P8210260_f.webp')">
+                    <div class="doc-placeholder"><img src="P8210260_s.webp" alt="kon"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+
+		 	<div class="archive-item" onclick="openLightbox('Ułan na koniu', 'obraz malowany na płótnie farbą olejną', 'P3150013_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150013_s.webp" alt="ulan"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysłąw Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Koń', 'obraz malowany na płótnie farbą olejną', 'CCI201_f.webp')">
+                    <div class="doc-placeholder"><img src="CCI201_s.webp" alt="kon"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+
+		<div class="archive-item" onclick="openLightbox('Żyd', 'obraz malowany na płótnie farbą olejną .', 'P3150025_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150025_f_s.webp" alt="zyd"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Florian Nepomucki 1941', 'portret wykonany w technice rysunkowo-malarskiej', 'P3150015_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150015_s.webp" alt="osoba"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Warszawa</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Panna młoda 1', 'technika akwareli, połączonej z delikatnym rysunkiem kredkami na papierze', 'P3150022_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150022_f_s.webp" alt="panna"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+
+<div class="archive-item" onclick="openLightbox('Panna młoda 2', 'technika akwareli, połączonej z delikatnym rysunkiem kredkami na papierze', 'P3150024_f.webp')">
+                    <div class="doc-placeholder"><img src="P3150024_s.webp" alt="panna"></div>
+                    <div class="item-meta"><p class="item-title">Mieczysław Nepomucki</p><p class="item-desc">Ostróda</p></div>
+                </div>
+		<div class="archive-item" onclick="openLightbox('Pojedynek № 5 Ilustracja do „Cichego Donu” Korotkowa', ' technika rysunkowa z użyciem lawowania', 'P4130015_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130015_s.webp" alt="pojedynek"></div>
+                     <div class="item-meta"><p class="item-title"></p><b>Mieczysław Nepomucki</b><p class="item-desc">Ostróda</p></div>
+                </div>
+<div class="archive-item" onclick="openLightbox('Opis № 5 Ilustracja do „Cichego Donu” Korotkowa', 'powieść Michaiła Szołochowa', 'P4130017_f.webp')">
+                    <div class="doc-placeholder"><img src="P4130017_s.webp" alt="pojedynek"></div>
+                    <div class="item-meta"><p class="item-title"></p><b>Mieczysław Nepomucki</b><p class="item-desc">Ostróda</p></div>
+                </div>
+
+                                </div>
             </div>
         </main>
     </div>
+    
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content">Podgląd reprodukcji</div>
-        <div id="lightbox-caption" class="lightbox-caption"></div>
+        <!-- Kontener wewnętrzny przechwyci kliknięcie, aby nie zamykać okna przypadkowo -->
+        <div class="lightbox-content" id="lightbox-content" onclick="event.stopPropagation()">Podgląd skanu dokumentu archiwalnego</div>
+        <div id="lightbox-caption" class="lightbox-caption" onclick="event.stopPropagation()"></div>
     </div>
+
     <script>
-        function openLightbox(title, desc) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br>' + desc; }
-        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        function openLightbox(title, desc, mediaSrc) { 
+            const contentBox = document.getElementById('lightbox-content');
+            
+            // Jeśli przekazano adres pliku graficznego, wstawiamy tag <img>
+            if (mediaSrc) {
+                contentBox.innerHTML = '<img src="' + mediaSrc + '" alt="' + title + '">';
+                contentBox.style.background = 'transparent'; // opcjonalne usunięcie szarego tła dla obrazka
+            } else {
+                // Domyślny tekst zastępczy, jeśli brak fizycznego pliku skanu
+                contentBox.innerHTML = 'Podgląd skanu dokumentu archiwalnego';
+                contentBox.style.background = '#222';
+            }
+
+            document.getElementById('lightbox').style.display = 'flex'; 
+            document.getElementById('lightbox-caption').innerHTML = '<strong>' + title + '</strong><br><span style="color:#ccc; font-size:0.85rem;">' + desc + '</span>'; 
+        }
+        
+        function closeLightbox() { 
+            document.getElementById('lightbox').style.display = 'none'; 
+        }
     </script>
 </body>
 </html>
